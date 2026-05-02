@@ -1,15 +1,15 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-// import { corsConfig } from "./config/cors.config.js";
-// import { mainRouter } from "./routes/index.js";
-// import { errorHandler } from "./middleware/error.middleware.js";
+import { corsConfig } from "./config/cors.config.js";
+import { mainRouter } from "./routes/index.js";
+import { errorHandler } from "./middleware/error.middleware.js";
 
 const app = express();
 
 // Middleware
 app.use(helmet());
-// app.use(cors(corsConfig));
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,7 +18,7 @@ app.get("/health", (req, res) => {
 });
 
 // API Routes
-// app.use("/api", mainRouter);
+app.use("/api", mainRouter);
 
 // 404 handler
 app.use((req, res) => {
@@ -29,6 +29,6 @@ app.use((req, res) => {
 });
 
 // Error handler
-// app.use(errorHandler);
+app.use(errorHandler);
 
 export { app };

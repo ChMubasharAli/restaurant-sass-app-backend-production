@@ -10,15 +10,24 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+
     "strict": true,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    // =====================================IMPORTANT NOTE MUST KEEP IN MIND ================================
+
+    // Agar kisi aur project meinye file use karni hai toh "noUncheckedIndexedAccess" and "exactOptionalPropertyTypes" inn dono ko TRUE rakhna hai
+    // iss k sath hi "strictPropertyInitialization" and "noImplicitAny" inn dono ko remoge kar dena hai
+
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false
   },
   "include": ["src/**/*"],
   "exclude": [

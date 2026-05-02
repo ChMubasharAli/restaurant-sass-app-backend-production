@@ -23,7 +23,11 @@ model Category {
   sortOrder   Int        @default(0)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime
-  MenuItem    MenuItem[]
+  
+  // ✅ FIXED: MenuItem → menuItems
+  menuItems   MenuItem[]
+
+  @@map("categories")
 }
 
 model MenuItem {
@@ -36,9 +40,14 @@ model MenuItem {
   categoryId  Int
   createdAt   DateTime    @default(now())
   updatedAt   DateTime
-  Category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  OrderItem   OrderItem[]
+  
+  // ✅ FIXED: Category → category
+  category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  // ✅ FIXED: OrderItem → orderItems
+  orderItems  OrderItem[]
 
+  @@map("menu_items")
   @@index([categoryId])
   @@index([isAvailable])
 }
@@ -59,9 +68,14 @@ model Order {
   totalAmount     Decimal       @db.Decimal(10, 2)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime
-  OrderItem       OrderItem[]
-  Transaction     Transaction?
+  
+  // ✅ FIXED: OrderItem → orderItems
+  orderItems      OrderItem[]
+  
+  // ✅ FIXED: Transaction → transaction
+  transaction     Transaction?
 
+  @@map("orders")
   @@index([createdAt])
   @@index([orderNumber])
   @@index([status])
@@ -75,9 +89,14 @@ model OrderItem {
   unitPrice  Decimal  @db.Decimal(10, 2)
   totalPrice Decimal  @db.Decimal(10, 2)
   createdAt  DateTime @default(now())
-  MenuItem   MenuItem @relation(fields: [menuItemId], references: [id])
-  Order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  // ✅ FIXED: MenuItem → menuItem
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  
+  // ✅ FIXED: Order → order
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
+  @@map("order_items")
   @@index([menuItemId])
   @@index([orderId])
 }
@@ -95,6 +114,7 @@ model Reservation {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime
 
+  @@map("reservations")
   @@index([reservationDate])
   @@index([status])
 }
@@ -112,6 +132,8 @@ model RestaurantSettings {
   authorizeNetTransactionKey String?
   createdAt                  DateTime @default(now())
   updatedAt                  DateTime
+
+  @@map("restaurant_settings")
 }
 
 model Transaction {
@@ -123,11 +145,18 @@ model Transaction {
   status          TransactionStatus
   gatewayResponse Json?
   createdAt       DateTime          @default(now())
-  Order           Order             @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  // ✅ FIXED: Order → order
+  order           Order             @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
+  @@map("transactions")
   @@index([orderId])
   @@index([transactionId])
 }
+
+// ============================================
+// ENUMS (No changes needed)
+// ============================================
 
 enum OrderStatus {
   PENDING
