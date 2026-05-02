@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
+
+model Category {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  description String?
+  sortOrder   Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime
+  MenuItem    MenuItem[]
+}
+
+model MenuItem {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String
+  price       Decimal     @db.Decimal(10, 2)
+  image       String?
+  isAvailable Boolean     @default(true)
+  categoryId  Int
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  Category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  OrderItem   OrderItem[]
+
+  @@index([categoryId])
+  @@index([isAvailable])
+}
+
+model Order {
+  id              Int           @id @default(autoincrement())
+  orderNumber     String        @unique
+  orderType       OrderType
+  status          OrderStatus   @default(PENDING)
+  customerName    String
+  phoneNumber     String
+  deliveryAddress String?
+  deliveryNotes   String?
+  pickupTime      DateTime?
+  pickupType      PickupType?
+  paymentMethod   PaymentMethod
+  paymentStatus   PaymentStatus @default(PENDING)
+  totalAmount     Decimal       @db.Decimal(10, 2)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime
+  OrderItem       OrderItem[]
+  Transaction     Transaction?
+
+  @@index([createdAt])
+  @@index([orderNumber])
+  @@index([status])
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  orderId    Int
+  menuItemId Int
+  quantity   Int
+  unitPrice  Decimal  @db.Decimal(10, 2)
+  totalPrice Decimal  @db.Decimal(10, 2)
+  createdAt  DateTime @default(now())
+  MenuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  Order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([menuItemId])
+  @@index([orderId])
+}
+
+model Reservation {
+  id              Int               @id @default(autoincrement())
+  reservationDate DateTime
+  timeSlot        String
+  numberOfGuests  Int
+  customerName    String
+  phoneNumber     String
+  specialRequest  String?
+  status          ReservationStatus @default(PENDING)
+  notes           String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+
+  @@index([reservationDate])
+  @@index([status])
+}
+
+model RestaurantSettings {
+  id                         Int      @id @default(autoincrement())
+  name                       String
+  contactNumber              String
+  address                    String
+  latitude                   Float    @default(0)
+  longitude                  Float    @default(0)
+  isOpen                     Boolean  @default(true)
+  deliveryRadiusKm           Float    @default(5)
+  authorizeNetApiLoginId     String?
+  authorizeNetTransactionKey String?
+  createdAt                  DateTime @default(now())
+  updatedAt                  DateTime
+}
+
+model Transaction {
+  id              Int               @id @default(autoincrement())
+  orderId         Int               @unique
+  transactionId   String?           @unique
+  paymentMethod   PaymentMethod
+  amount          Decimal           @db.Decimal(10, 2)
+  status          TransactionStatus
+  gatewayResponse Json?
+  createdAt       DateTime          @default(now())
+  Order           Order             @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([transactionId])
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  READY
+  COMPLETED
+}
+
+enum OrderType {
+  DELIVERY
+  TAKEAWAY
+}
+
+enum PaymentMethod {
+  COD
+  ONLINE
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+enum PickupType {
+  ASAP
+  SCHEDULED
+}
+
+enum ReservationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
