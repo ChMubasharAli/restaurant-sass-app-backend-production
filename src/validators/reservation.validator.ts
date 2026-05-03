@@ -1,11 +1,18 @@
 import { z } from "zod";
-import { VALID_TIME_SLOTS } from "../utils/time-slots.js";
+import { generateTimeSlots } from "../utils/time-slots.js";
+
+// Use Zod's async refinement for dynamic time slot validation
 export const createReservationSchema = z.object({
   reservationDate: z.string().datetime("Invalid date format"),
-  timeSlot: z.string().refine((val) => VALID_TIME_SLOTS.includes(val), {
-    message:
-      "Invalid time slot. Must be one of: " + VALID_TIME_SLOTS.join(", "),
-  }),
+  timeSlot: z.string().refine(
+    async (val) => {
+      const validSlots = await generateTimeSlots();
+      return validSlots.includes(val);
+    },
+    {
+      message: "Invalid or unavailable time slot",
+    },
+  ),
   numberOfGuests: z
     .number()
     .int()

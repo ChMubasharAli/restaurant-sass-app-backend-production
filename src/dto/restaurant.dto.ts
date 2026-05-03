@@ -8,4 +8,7 @@ export interface UpdateRestaurantSettingsDTO {
   deliveryRadiusKm?: number;
   authorizeNetApiLoginId?: string;
   authorizeNetTransactionKey?: string;
+  openingTime?: string;
+  closingTime?: string;
+  logoUrl?: string;
 }

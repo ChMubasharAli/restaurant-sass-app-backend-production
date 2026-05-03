@@ -8,12 +8,12 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Admin'
-export type * from './models/RestaurantSettings'
-export type * from './models/Category'
-export type * from './models/MenuItem'
-export type * from './models/Order'
-export type * from './models/OrderItem'
-export type * from './models/Reservation'
-export type * from './models/Transaction'
-export type * from './commonInputTypes'
+export type * from './models/Admin.js'
+export type * from './models/RestaurantSettings.js'
+export type * from './models/Category.js'
+export type * from './models/MenuItem.js'
+export type * from './models/Order.js'
+export type * from './models/OrderItem.js'
+export type * from './models/Reservation.js'
+export type * from './models/Transaction.js'
+export type * from './commonInputTypes.js'

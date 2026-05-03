@@ -19,8 +19,8 @@ async function main() {
   console.log("✅ Admin user seeded:");
   console.log("   Username: admin");
   console.log("   Password: admin123");
-  console.log("   Hash:", adminPassword);
 
+  // Create default restaurant settings with opening/closing times
   await prisma.restaurantSettings.upsert({
     where: { id: 1 },
     update: {},
@@ -32,9 +32,34 @@ async function main() {
       longitude: 0,
       deliveryRadiusKm: 5,
       isOpen: true,
+      openingTime: "11:00",
+      closingTime: "22:00",
+      logoUrl: null,
     },
   });
 
+  console.log("✅ Restaurant settings seeded:");
+  console.log("   Opening Time: 11:00");
+  console.log("   Closing Time: 22:00");
+  console.log("   Delivery Radius: 5 KM");
+
+  // Create sample categories
+  const categories = [
+    { name: "Appetizers", description: "Start your meal right", sortOrder: 1 },
+    { name: "Main Course", description: "Hearty main dishes", sortOrder: 2 },
+    { name: "Desserts", description: "Sweet endings", sortOrder: 3 },
+    { name: "Beverages", description: "Refreshing drinks", sortOrder: 4 },
+  ];
+
+  for (const category of categories) {
+    await prisma.category.upsert({
+      where: { name: category.name },
+      update: {},
+      create: category,
+    });
+  }
+
+  console.log("✅ Categories seeded");
   console.log("Seed data inserted successfully");
 }
 

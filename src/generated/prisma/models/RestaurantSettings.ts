@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model RestaurantSettings
@@ -51,6 +51,9 @@ export type RestaurantSettingsMinAggregateOutputType = {
   deliveryRadiusKm: number | null
   authorizeNetApiLoginId: string | null
   authorizeNetTransactionKey: string | null
+  openingTime: string | null
+  closingTime: string | null
+  logoUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,6 +69,9 @@ export type RestaurantSettingsMaxAggregateOutputType = {
   deliveryRadiusKm: number | null
   authorizeNetApiLoginId: string | null
   authorizeNetTransactionKey: string | null
+  openingTime: string | null
+  closingTime: string | null
+  logoUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -81,6 +87,9 @@ export type RestaurantSettingsCountAggregateOutputType = {
   deliveryRadiusKm: number
   authorizeNetApiLoginId: number
   authorizeNetTransactionKey: number
+  openingTime: number
+  closingTime: number
+  logoUrl: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -112,6 +121,9 @@ export type RestaurantSettingsMinAggregateInputType = {
   deliveryRadiusKm?: true
   authorizeNetApiLoginId?: true
   authorizeNetTransactionKey?: true
+  openingTime?: true
+  closingTime?: true
+  logoUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -127,6 +139,9 @@ export type RestaurantSettingsMaxAggregateInputType = {
   deliveryRadiusKm?: true
   authorizeNetApiLoginId?: true
   authorizeNetTransactionKey?: true
+  openingTime?: true
+  closingTime?: true
+  logoUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -142,6 +157,9 @@ export type RestaurantSettingsCountAggregateInputType = {
   deliveryRadiusKm?: true
   authorizeNetApiLoginId?: true
   authorizeNetTransactionKey?: true
+  openingTime?: true
+  closingTime?: true
+  logoUrl?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -244,6 +262,9 @@ export type RestaurantSettingsGroupByOutputType = {
   deliveryRadiusKm: number
   authorizeNetApiLoginId: string | null
   authorizeNetTransactionKey: string | null
+  openingTime: string
+  closingTime: string
+  logoUrl: string | null
   createdAt: Date
   updatedAt: Date
   _count: RestaurantSettingsCountAggregateOutputType | null
@@ -282,6 +303,9 @@ export type RestaurantSettingsWhereInput = {
   deliveryRadiusKm?: Prisma.FloatFilter<"RestaurantSettings"> | number
   authorizeNetApiLoginId?: Prisma.StringNullableFilter<"RestaurantSettings"> | string | null
   authorizeNetTransactionKey?: Prisma.StringNullableFilter<"RestaurantSettings"> | string | null
+  openingTime?: Prisma.StringFilter<"RestaurantSettings"> | string
+  closingTime?: Prisma.StringFilter<"RestaurantSettings"> | string
+  logoUrl?: Prisma.StringNullableFilter<"RestaurantSettings"> | string | null
   createdAt?: Prisma.DateTimeFilter<"RestaurantSettings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RestaurantSettings"> | Date | string
 }
@@ -297,6 +321,9 @@ export type RestaurantSettingsOrderByWithRelationInput = {
   deliveryRadiusKm?: Prisma.SortOrder
   authorizeNetApiLoginId?: Prisma.SortOrderInput | Prisma.SortOrder
   authorizeNetTransactionKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  openingTime?: Prisma.SortOrder
+  closingTime?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -315,6 +342,9 @@ export type RestaurantSettingsWhereUniqueInput = Prisma.AtLeast<{
   deliveryRadiusKm?: Prisma.FloatFilter<"RestaurantSettings"> | number
   authorizeNetApiLoginId?: Prisma.StringNullableFilter<"RestaurantSettings"> | string | null
   authorizeNetTransactionKey?: Prisma.StringNullableFilter<"RestaurantSettings"> | string | null
+  openingTime?: Prisma.StringFilter<"RestaurantSettings"> | string
+  closingTime?: Prisma.StringFilter<"RestaurantSettings"> | string
+  logoUrl?: Prisma.StringNullableFilter<"RestaurantSettings"> | string | null
   createdAt?: Prisma.DateTimeFilter<"RestaurantSettings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RestaurantSettings"> | Date | string
 }, "id">
@@ -330,6 +360,9 @@ export type RestaurantSettingsOrderByWithAggregationInput = {
   deliveryRadiusKm?: Prisma.SortOrder
   authorizeNetApiLoginId?: Prisma.SortOrderInput | Prisma.SortOrder
   authorizeNetTransactionKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  openingTime?: Prisma.SortOrder
+  closingTime?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.RestaurantSettingsCountOrderByAggregateInput
@@ -353,6 +386,9 @@ export type RestaurantSettingsScalarWhereWithAggregatesInput = {
   deliveryRadiusKm?: Prisma.FloatWithAggregatesFilter<"RestaurantSettings"> | number
   authorizeNetApiLoginId?: Prisma.StringNullableWithAggregatesFilter<"RestaurantSettings"> | string | null
   authorizeNetTransactionKey?: Prisma.StringNullableWithAggregatesFilter<"RestaurantSettings"> | string | null
+  openingTime?: Prisma.StringWithAggregatesFilter<"RestaurantSettings"> | string
+  closingTime?: Prisma.StringWithAggregatesFilter<"RestaurantSettings"> | string
+  logoUrl?: Prisma.StringNullableWithAggregatesFilter<"RestaurantSettings"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RestaurantSettings"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RestaurantSettings"> | Date | string
 }
@@ -367,6 +403,9 @@ export type RestaurantSettingsCreateInput = {
   deliveryRadiusKm?: number
   authorizeNetApiLoginId?: string | null
   authorizeNetTransactionKey?: string | null
+  openingTime?: string
+  closingTime?: string
+  logoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -382,6 +421,9 @@ export type RestaurantSettingsUncheckedCreateInput = {
   deliveryRadiusKm?: number
   authorizeNetApiLoginId?: string | null
   authorizeNetTransactionKey?: string | null
+  openingTime?: string
+  closingTime?: string
+  logoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -396,6 +438,9 @@ export type RestaurantSettingsUpdateInput = {
   deliveryRadiusKm?: Prisma.FloatFieldUpdateOperationsInput | number
   authorizeNetApiLoginId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeNetTransactionKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  closingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -411,6 +456,9 @@ export type RestaurantSettingsUncheckedUpdateInput = {
   deliveryRadiusKm?: Prisma.FloatFieldUpdateOperationsInput | number
   authorizeNetApiLoginId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeNetTransactionKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  closingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -426,6 +474,9 @@ export type RestaurantSettingsCreateManyInput = {
   deliveryRadiusKm?: number
   authorizeNetApiLoginId?: string | null
   authorizeNetTransactionKey?: string | null
+  openingTime?: string
+  closingTime?: string
+  logoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -440,6 +491,9 @@ export type RestaurantSettingsUpdateManyMutationInput = {
   deliveryRadiusKm?: Prisma.FloatFieldUpdateOperationsInput | number
   authorizeNetApiLoginId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeNetTransactionKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  closingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -455,6 +509,9 @@ export type RestaurantSettingsUncheckedUpdateManyInput = {
   deliveryRadiusKm?: Prisma.FloatFieldUpdateOperationsInput | number
   authorizeNetApiLoginId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorizeNetTransactionKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  openingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  closingTime?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -470,6 +527,9 @@ export type RestaurantSettingsCountOrderByAggregateInput = {
   deliveryRadiusKm?: Prisma.SortOrder
   authorizeNetApiLoginId?: Prisma.SortOrder
   authorizeNetTransactionKey?: Prisma.SortOrder
+  openingTime?: Prisma.SortOrder
+  closingTime?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -492,6 +552,9 @@ export type RestaurantSettingsMaxOrderByAggregateInput = {
   deliveryRadiusKm?: Prisma.SortOrder
   authorizeNetApiLoginId?: Prisma.SortOrder
   authorizeNetTransactionKey?: Prisma.SortOrder
+  openingTime?: Prisma.SortOrder
+  closingTime?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -507,6 +570,9 @@ export type RestaurantSettingsMinOrderByAggregateInput = {
   deliveryRadiusKm?: Prisma.SortOrder
   authorizeNetApiLoginId?: Prisma.SortOrder
   authorizeNetTransactionKey?: Prisma.SortOrder
+  openingTime?: Prisma.SortOrder
+  closingTime?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -547,6 +613,9 @@ export type RestaurantSettingsSelect<ExtArgs extends runtime.Types.Extensions.In
   deliveryRadiusKm?: boolean
   authorizeNetApiLoginId?: boolean
   authorizeNetTransactionKey?: boolean
+  openingTime?: boolean
+  closingTime?: boolean
+  logoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["restaurantSettings"]>
@@ -562,6 +631,9 @@ export type RestaurantSettingsSelectCreateManyAndReturn<ExtArgs extends runtime.
   deliveryRadiusKm?: boolean
   authorizeNetApiLoginId?: boolean
   authorizeNetTransactionKey?: boolean
+  openingTime?: boolean
+  closingTime?: boolean
+  logoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["restaurantSettings"]>
@@ -577,6 +649,9 @@ export type RestaurantSettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   deliveryRadiusKm?: boolean
   authorizeNetApiLoginId?: boolean
   authorizeNetTransactionKey?: boolean
+  openingTime?: boolean
+  closingTime?: boolean
+  logoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["restaurantSettings"]>
@@ -592,11 +667,14 @@ export type RestaurantSettingsSelectScalar = {
   deliveryRadiusKm?: boolean
   authorizeNetApiLoginId?: boolean
   authorizeNetTransactionKey?: boolean
+  openingTime?: boolean
+  closingTime?: boolean
+  logoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type RestaurantSettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "contactNumber" | "address" | "latitude" | "longitude" | "isOpen" | "deliveryRadiusKm" | "authorizeNetApiLoginId" | "authorizeNetTransactionKey" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurantSettings"]>
+export type RestaurantSettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "contactNumber" | "address" | "latitude" | "longitude" | "isOpen" | "deliveryRadiusKm" | "authorizeNetApiLoginId" | "authorizeNetTransactionKey" | "openingTime" | "closingTime" | "logoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurantSettings"]>
 
 export type $RestaurantSettingsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RestaurantSettings"
@@ -612,6 +690,9 @@ export type $RestaurantSettingsPayload<ExtArgs extends runtime.Types.Extensions.
     deliveryRadiusKm: number
     authorizeNetApiLoginId: string | null
     authorizeNetTransactionKey: string | null
+    openingTime: string
+    closingTime: string
+    logoUrl: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["restaurantSettings"]>
@@ -1047,6 +1128,9 @@ export interface RestaurantSettingsFieldRefs {
   readonly deliveryRadiusKm: Prisma.FieldRef<"RestaurantSettings", 'Float'>
   readonly authorizeNetApiLoginId: Prisma.FieldRef<"RestaurantSettings", 'String'>
   readonly authorizeNetTransactionKey: Prisma.FieldRef<"RestaurantSettings", 'String'>
+  readonly openingTime: Prisma.FieldRef<"RestaurantSettings", 'String'>
+  readonly closingTime: Prisma.FieldRef<"RestaurantSettings", 'String'>
+  readonly logoUrl: Prisma.FieldRef<"RestaurantSettings", 'String'>
   readonly createdAt: Prisma.FieldRef<"RestaurantSettings", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"RestaurantSettings", 'DateTime'>
 }

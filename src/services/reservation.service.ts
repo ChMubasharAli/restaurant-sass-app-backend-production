@@ -1,5 +1,6 @@
 import { ReservationRepository } from "../repositories/reservation.repository.js";
 import type { CreateReservationDTO } from "../dto/reservation.dto.js";
+import { isValidTimeSlot } from "../utils/time-slots.js";
 import {
   NotFoundError,
   ValidationError,
@@ -14,6 +15,14 @@ export class ReservationService {
   }
 
   async createReservation(data: CreateReservationDTO) {
+    // Validate time slot is valid based on restaurant opening/closing times
+    const isValid = await isValidTimeSlot(data.timeSlot);
+    if (!isValid) {
+      throw new ValidationError(
+        "Invalid time slot. Please select a valid time slot.",
+      );
+    }
+
     // Check if the time slot is available
     const isAvailable = await this.reservationRepository.checkAvailability(
       new Date(data.reservationDate),
@@ -86,8 +95,6 @@ export class ReservationService {
     );
 
     return reservation_date;
-    // Cancelled slots become available again automatically
-    // because our availability check excludes CANCELLED and REJECTED statuses
   }
 
   async getReservationSchedule(date?: string) {
@@ -101,6 +108,17 @@ export class ReservationService {
   }
 
   async checkSlotAvailability(date: string, timeSlot: string) {
+    // Also validate time slot format
+    const isValid = await isValidTimeSlot(timeSlot);
+    if (!isValid) {
+      return {
+        date,
+        timeSlot,
+        available: false,
+        message: "Invalid time slot",
+      };
+    }
+
     const isAvailable = await this.reservationRepository.checkAvailability(
       new Date(date),
       timeSlot,

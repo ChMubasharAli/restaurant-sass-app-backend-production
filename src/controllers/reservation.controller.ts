@@ -140,7 +140,6 @@ export class ReservationController {
 
   getTimeSlots = async (req: Request, res: Response) => {
     const { date } = req.query;
-    console.log("Received date query:", date);
 
     if (!date) {
       throw new ValidationError("Date is required");
@@ -154,7 +153,8 @@ export class ReservationController {
       .filter((r) => r.status !== "CANCELLED" && r.status !== "REJECTED")
       .map((r) => r.timeSlot);
 
-    const availableSlots = getAvailableTimeSlots(bookedSlots);
+    // Now using await since getAvailableTimeSlots is async
+    const availableSlots = await getAvailableTimeSlots(bookedSlots);
 
     res.json({
       status: "success",

@@ -1,7 +1,7 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
-   moduleFormat        = "esm"
+  provider   = "prisma-client"
+  output     = "../src/generated/prisma"
+  moduleFormat        = "esm"
   importFileExtension = "js"
   generatedFileExtension = "ts"
 }
@@ -30,6 +30,9 @@ model RestaurantSettings {
   deliveryRadiusKm           Float    @default(5)
   authorizeNetApiLoginId     String?
   authorizeNetTransactionKey String?
+  openingTime                String   @default("11:00")
+  closingTime                String   @default("22:00")
+  logoUrl                    String?
   createdAt                  DateTime @default(now())
   updatedAt                  DateTime @updatedAt
 }

@@ -10,6 +10,15 @@ export const updateRestaurantSettingsSchema = z.object({
   deliveryRadiusKm: z.number().positive().optional(),
   authorizeNetApiLoginId: z.string().optional(),
   authorizeNetTransactionKey: z.string().optional(),
+  openingTime: z
+    .string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:mm)")
+    .optional(),
+  closingTime: z
+    .string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:mm)")
+    .optional(),
+  logoUrl: z.string().url("Invalid URL").optional().or(z.literal("")),
 });
 
 export type UpdateRestaurantSettingsInput = z.infer<
