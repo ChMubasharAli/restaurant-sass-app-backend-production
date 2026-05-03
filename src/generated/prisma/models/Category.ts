@@ -285,7 +285,7 @@ export type CategoryCreateInput = {
   description?: string | null
   sortOrder?: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutCategoryInput
 }
 
@@ -295,7 +295,7 @@ export type CategoryUncheckedCreateInput = {
   description?: string | null
   sortOrder?: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutCategoryInput
 }
 
@@ -324,7 +324,7 @@ export type CategoryCreateManyInput = {
   description?: string | null
   sortOrder?: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type CategoryUpdateManyMutationInput = {
@@ -386,10 +386,6 @@ export type CategoryScalarRelationFilter = {
   isNot?: Prisma.CategoryWhereInput
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type CategoryCreateNestedOneWithoutMenuItemsInput = {
   create?: Prisma.XOR<Prisma.CategoryCreateWithoutMenuItemsInput, Prisma.CategoryUncheckedCreateWithoutMenuItemsInput>
   connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutMenuItemsInput
@@ -409,7 +405,7 @@ export type CategoryCreateWithoutMenuItemsInput = {
   description?: string | null
   sortOrder?: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type CategoryUncheckedCreateWithoutMenuItemsInput = {
@@ -418,7 +414,7 @@ export type CategoryUncheckedCreateWithoutMenuItemsInput = {
   description?: string | null
   sortOrder?: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type CategoryCreateOrConnectWithoutMenuItemsInput = {

@@ -368,7 +368,7 @@ export type RestaurantSettingsCreateInput = {
   authorizeNetApiLoginId?: string | null
   authorizeNetTransactionKey?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type RestaurantSettingsUncheckedCreateInput = {
@@ -383,7 +383,7 @@ export type RestaurantSettingsUncheckedCreateInput = {
   authorizeNetApiLoginId?: string | null
   authorizeNetTransactionKey?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type RestaurantSettingsUpdateInput = {
@@ -427,7 +427,7 @@ export type RestaurantSettingsCreateManyInput = {
   authorizeNetApiLoginId?: string | null
   authorizeNetTransactionKey?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type RestaurantSettingsUpdateManyMutationInput = {
@@ -524,6 +524,14 @@ export type FloatFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 

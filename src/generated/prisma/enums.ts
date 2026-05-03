@@ -9,6 +9,14 @@
 * 🟢 You can import this file directly.
 */
 
+export const OrderType = {
+  DELIVERY: 'DELIVERY',
+  TAKEAWAY: 'TAKEAWAY'
+} as const
+
+export type OrderType = (typeof OrderType)[keyof typeof OrderType]
+
+
 export const OrderStatus = {
   PENDING: 'PENDING',
   PREPARING: 'PREPARING',
@@ -19,12 +27,12 @@ export const OrderStatus = {
 export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 
-export const OrderType = {
-  DELIVERY: 'DELIVERY',
-  TAKEAWAY: 'TAKEAWAY'
+export const PickupType = {
+  ASAP: 'ASAP',
+  SCHEDULED: 'SCHEDULED'
 } as const
 
-export type OrderType = (typeof OrderType)[keyof typeof OrderType]
+export type PickupType = (typeof PickupType)[keyof typeof PickupType]
 
 
 export const PaymentMethod = {
@@ -44,12 +52,14 @@ export const PaymentStatus = {
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 
 
-export const PickupType = {
-  ASAP: 'ASAP',
-  SCHEDULED: 'SCHEDULED'
+export const TransactionStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
 } as const
 
-export type PickupType = (typeof PickupType)[keyof typeof PickupType]
+export type TransactionStatus = (typeof TransactionStatus)[keyof typeof TransactionStatus]
 
 
 export const ReservationStatus = {
@@ -60,13 +70,3 @@ export const ReservationStatus = {
 } as const
 
 export type ReservationStatus = (typeof ReservationStatus)[keyof typeof ReservationStatus]
-
-
-export const TransactionStatus = {
-  PENDING: 'PENDING',
-  COMPLETED: 'COMPLETED',
-  FAILED: 'FAILED',
-  REFUNDED: 'REFUNDED'
-} as const
-
-export type TransactionStatus = (typeof TransactionStatus)[keyof typeof TransactionStatus]

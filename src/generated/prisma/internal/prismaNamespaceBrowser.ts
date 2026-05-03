@@ -52,12 +52,12 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Admin: 'Admin',
+  RestaurantSettings: 'RestaurantSettings',
   Category: 'Category',
   MenuItem: 'MenuItem',
   Order: 'Order',
   OrderItem: 'OrderItem',
   Reservation: 'Reservation',
-  RestaurantSettings: 'RestaurantSettings',
   Transaction: 'Transaction'
 } as const
 
@@ -87,6 +87,24 @@ export const AdminScalarFieldEnum = {
 } as const
 
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const RestaurantSettingsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  contactNumber: 'contactNumber',
+  address: 'address',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  isOpen: 'isOpen',
+  deliveryRadiusKm: 'deliveryRadiusKm',
+  authorizeNetApiLoginId: 'authorizeNetApiLoginId',
+  authorizeNetTransactionKey: 'authorizeNetTransactionKey',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RestaurantSettingsScalarFieldEnum = (typeof RestaurantSettingsScalarFieldEnum)[keyof typeof RestaurantSettingsScalarFieldEnum]
 
 
 export const CategoryScalarFieldEnum = {
@@ -165,24 +183,6 @@ export const ReservationScalarFieldEnum = {
 } as const
 
 export type ReservationScalarFieldEnum = (typeof ReservationScalarFieldEnum)[keyof typeof ReservationScalarFieldEnum]
-
-
-export const RestaurantSettingsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  contactNumber: 'contactNumber',
-  address: 'address',
-  latitude: 'latitude',
-  longitude: 'longitude',
-  isOpen: 'isOpen',
-  deliveryRadiusKm: 'deliveryRadiusKm',
-  authorizeNetApiLoginId: 'authorizeNetApiLoginId',
-  authorizeNetTransactionKey: 'authorizeNetTransactionKey',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type RestaurantSettingsScalarFieldEnum = (typeof RestaurantSettingsScalarFieldEnum)[keyof typeof RestaurantSettingsScalarFieldEnum]
 
 
 export const TransactionScalarFieldEnum = {

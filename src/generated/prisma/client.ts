@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type Admin = Prisma.AdminModel
 /**
+ * Model RestaurantSettings
+ * 
+ */
+export type RestaurantSettings = Prisma.RestaurantSettingsModel
+/**
  * Model Category
  * 
  */
@@ -71,11 +76,6 @@ export type OrderItem = Prisma.OrderItemModel
  * 
  */
 export type Reservation = Prisma.ReservationModel
-/**
- * Model RestaurantSettings
- * 
- */
-export type RestaurantSettings = Prisma.RestaurantSettingsModel
 /**
  * Model Transaction
  * 

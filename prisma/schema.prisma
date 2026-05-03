@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma" 
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -13,7 +13,22 @@ model Admin {
   password  String
   role      String
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
+}
+
+model RestaurantSettings {
+  id                         Int      @id @default(autoincrement())
+  name                       String
+  contactNumber              String
+  address                    String
+  latitude                   Float    @default(0)
+  longitude                  Float    @default(0)
+  isOpen                     Boolean  @default(true)
+  deliveryRadiusKm           Float    @default(5)
+  authorizeNetApiLoginId     String?
+  authorizeNetTransactionKey String?
+  createdAt                  DateTime @default(now())
+  updatedAt                  DateTime @updatedAt
 }
 
 model Category {
@@ -22,12 +37,8 @@ model Category {
   description String?
   sortOrder   Int        @default(0)
   createdAt   DateTime   @default(now())
-  updatedAt   DateTime
-  
-  // ✅ FIXED: MenuItem → menuItems
+  updatedAt   DateTime   @updatedAt
   menuItems   MenuItem[]
-
-  @@map("categories")
 }
 
 model MenuItem {
@@ -39,15 +50,10 @@ model MenuItem {
   isAvailable Boolean     @default(true)
   categoryId  Int
   createdAt   DateTime    @default(now())
-  updatedAt   DateTime
-  
-  // ✅ FIXED: Category → category
+  updatedAt   DateTime    @updatedAt
   category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  
-  // ✅ FIXED: OrderItem → orderItems
   orderItems  OrderItem[]
 
-  @@map("menu_items")
   @@index([categoryId])
   @@index([isAvailable])
 }
@@ -67,18 +73,13 @@ model Order {
   paymentStatus   PaymentStatus @default(PENDING)
   totalAmount     Decimal       @db.Decimal(10, 2)
   createdAt       DateTime      @default(now())
-  updatedAt       DateTime
-  
-  // ✅ FIXED: OrderItem → orderItems
+  updatedAt       DateTime      @updatedAt
   orderItems      OrderItem[]
-  
-  // ✅ FIXED: Transaction → transaction
   transaction     Transaction?
 
-  @@map("orders")
-  @@index([createdAt])
   @@index([orderNumber])
   @@index([status])
+  @@index([createdAt])
 }
 
 model OrderItem {
@@ -89,16 +90,11 @@ model OrderItem {
   unitPrice  Decimal  @db.Decimal(10, 2)
   totalPrice Decimal  @db.Decimal(10, 2)
   createdAt  DateTime @default(now())
-  
-  // ✅ FIXED: MenuItem → menuItem
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
-  
-  // ✅ FIXED: Order → order
   order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
-  @@map("order_items")
-  @@index([menuItemId])
   @@index([orderId])
+  @@index([menuItemId])
 }
 
 model Reservation {
@@ -112,28 +108,10 @@ model Reservation {
   status          ReservationStatus @default(PENDING)
   notes           String?
   createdAt       DateTime          @default(now())
-  updatedAt       DateTime
+  updatedAt       DateTime          @updatedAt
 
-  @@map("reservations")
   @@index([reservationDate])
   @@index([status])
-}
-
-model RestaurantSettings {
-  id                         Int      @id @default(autoincrement())
-  name                       String
-  contactNumber              String
-  address                    String
-  latitude                   Float    @default(0)
-  longitude                  Float    @default(0)
-  isOpen                     Boolean  @default(true)
-  deliveryRadiusKm           Float    @default(5)
-  authorizeNetApiLoginId     String?
-  authorizeNetTransactionKey String?
-  createdAt                  DateTime @default(now())
-  updatedAt                  DateTime
-
-  @@map("restaurant_settings")
 }
 
 model Transaction {
@@ -145,18 +123,16 @@ model Transaction {
   status          TransactionStatus
   gatewayResponse Json?
   createdAt       DateTime          @default(now())
-  
-  // ✅ FIXED: Order → order
   order           Order             @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
-  @@map("transactions")
   @@index([orderId])
   @@index([transactionId])
 }
 
-// ============================================
-// ENUMS (No changes needed)
-// ============================================
+enum OrderType {
+  DELIVERY
+  TAKEAWAY
+}
 
 enum OrderStatus {
   PENDING
@@ -165,9 +141,9 @@ enum OrderStatus {
   COMPLETED
 }
 
-enum OrderType {
-  DELIVERY
-  TAKEAWAY
+enum PickupType {
+  ASAP
+  SCHEDULED
 }
 
 enum PaymentMethod {
@@ -181,9 +157,11 @@ enum PaymentStatus {
   FAILED
 }
 
-enum PickupType {
-  ASAP
-  SCHEDULED
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
 }
 
 enum ReservationStatus {
@@ -191,11 +169,4 @@ enum ReservationStatus {
   ACCEPTED
   REJECTED
   CANCELLED
-}
-
-enum TransactionStatus {
-  PENDING
-  COMPLETED
-  FAILED
-  REFUNDED
 }

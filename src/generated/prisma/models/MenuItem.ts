@@ -330,7 +330,7 @@ export type MenuItemCreateInput = {
   image?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutMenuItemsInput
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutMenuItemInput
 }
@@ -344,7 +344,7 @@ export type MenuItemUncheckedCreateInput = {
   isAvailable?: boolean
   categoryId: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
 }
 
@@ -382,7 +382,7 @@ export type MenuItemCreateManyInput = {
   isAvailable?: boolean
   categoryId: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type MenuItemUpdateManyMutationInput = {
@@ -520,10 +520,6 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type MenuItemCreateNestedOneWithoutOrderItemsInput = {
   create?: Prisma.XOR<Prisma.MenuItemCreateWithoutOrderItemsInput, Prisma.MenuItemUncheckedCreateWithoutOrderItemsInput>
   connectOrCreate?: Prisma.MenuItemCreateOrConnectWithoutOrderItemsInput
@@ -545,7 +541,7 @@ export type MenuItemCreateWithoutCategoryInput = {
   image?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutMenuItemInput
 }
 
@@ -557,7 +553,7 @@ export type MenuItemUncheckedCreateWithoutCategoryInput = {
   image?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
 }
 
@@ -609,7 +605,7 @@ export type MenuItemCreateWithoutOrderItemsInput = {
   image?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutMenuItemsInput
 }
 
@@ -622,7 +618,7 @@ export type MenuItemUncheckedCreateWithoutOrderItemsInput = {
   isAvailable?: boolean
   categoryId: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type MenuItemCreateOrConnectWithoutOrderItemsInput = {
@@ -672,7 +668,7 @@ export type MenuItemCreateManyCategoryInput = {
   image?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type MenuItemUpdateWithoutCategoryInput = {

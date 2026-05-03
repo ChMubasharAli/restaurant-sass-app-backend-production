@@ -405,7 +405,7 @@ export type OrderCreateInput = {
   paymentStatus?: $Enums.PaymentStatus
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
   transaction?: Prisma.TransactionCreateNestedOneWithoutOrderInput
 }
@@ -425,7 +425,7 @@ export type OrderUncheckedCreateInput = {
   paymentStatus?: $Enums.PaymentStatus
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
   transaction?: Prisma.TransactionUncheckedCreateNestedOneWithoutOrderInput
 }
@@ -484,7 +484,7 @@ export type OrderCreateManyInput = {
   paymentStatus?: $Enums.PaymentStatus
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderUpdateManyMutationInput = {
@@ -657,7 +657,7 @@ export type OrderCreateWithoutOrderItemsInput = {
   paymentStatus?: $Enums.PaymentStatus
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   transaction?: Prisma.TransactionCreateNestedOneWithoutOrderInput
 }
 
@@ -676,7 +676,7 @@ export type OrderUncheckedCreateWithoutOrderItemsInput = {
   paymentStatus?: $Enums.PaymentStatus
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   transaction?: Prisma.TransactionUncheckedCreateNestedOneWithoutOrderInput
 }
 
@@ -747,7 +747,7 @@ export type OrderCreateWithoutTransactionInput = {
   paymentStatus?: $Enums.PaymentStatus
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
 
@@ -766,7 +766,7 @@ export type OrderUncheckedCreateWithoutTransactionInput = {
   paymentStatus?: $Enums.PaymentStatus
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
 }
 

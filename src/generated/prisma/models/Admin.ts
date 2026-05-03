@@ -278,7 +278,7 @@ export type AdminCreateInput = {
   password: string
   role: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type AdminUncheckedCreateInput = {
@@ -287,7 +287,7 @@ export type AdminUncheckedCreateInput = {
   password: string
   role: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type AdminUpdateInput = {
@@ -313,7 +313,7 @@ export type AdminCreateManyInput = {
   password: string
   role: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type AdminUpdateManyMutationInput = {

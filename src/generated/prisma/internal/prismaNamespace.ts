@@ -385,12 +385,12 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Admin: 'Admin',
+  RestaurantSettings: 'RestaurantSettings',
   Category: 'Category',
   MenuItem: 'MenuItem',
   Order: 'Order',
   OrderItem: 'OrderItem',
   Reservation: 'Reservation',
-  RestaurantSettings: 'RestaurantSettings',
   Transaction: 'Transaction'
 } as const
 
@@ -407,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "category" | "menuItem" | "order" | "orderItem" | "reservation" | "restaurantSettings" | "transaction"
+    modelProps: "admin" | "restaurantSettings" | "category" | "menuItem" | "order" | "orderItem" | "reservation" | "transaction"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -482,6 +482,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AdminCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AdminCountAggregateOutputType> | number
+        }
+      }
+    }
+    RestaurantSettings: {
+      payload: Prisma.$RestaurantSettingsPayload<ExtArgs>
+      fields: Prisma.RestaurantSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RestaurantSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RestaurantSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.RestaurantSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RestaurantSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.RestaurantSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.RestaurantSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.RestaurantSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RestaurantSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.RestaurantSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+        }
+        update: {
+          args: Prisma.RestaurantSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.RestaurantSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RestaurantSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RestaurantSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.RestaurantSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.RestaurantSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRestaurantSettings>
+        }
+        groupBy: {
+          args: Prisma.RestaurantSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RestaurantSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RestaurantSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RestaurantSettingsCountAggregateOutputType> | number
         }
       }
     }
@@ -855,80 +929,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    RestaurantSettings: {
-      payload: Prisma.$RestaurantSettingsPayload<ExtArgs>
-      fields: Prisma.RestaurantSettingsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.RestaurantSettingsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.RestaurantSettingsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
-        }
-        findFirst: {
-          args: Prisma.RestaurantSettingsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.RestaurantSettingsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
-        }
-        findMany: {
-          args: Prisma.RestaurantSettingsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
-        }
-        create: {
-          args: Prisma.RestaurantSettingsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
-        }
-        createMany: {
-          args: Prisma.RestaurantSettingsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.RestaurantSettingsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
-        }
-        delete: {
-          args: Prisma.RestaurantSettingsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
-        }
-        update: {
-          args: Prisma.RestaurantSettingsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
-        }
-        deleteMany: {
-          args: Prisma.RestaurantSettingsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.RestaurantSettingsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.RestaurantSettingsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
-        }
-        upsert: {
-          args: Prisma.RestaurantSettingsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
-        }
-        aggregate: {
-          args: Prisma.RestaurantSettingsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateRestaurantSettings>
-        }
-        groupBy: {
-          args: Prisma.RestaurantSettingsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.RestaurantSettingsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.RestaurantSettingsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.RestaurantSettingsCountAggregateOutputType> | number
-        }
-      }
-    }
     Transaction: {
       payload: Prisma.$TransactionPayload<ExtArgs>
       fields: Prisma.TransactionFieldRefs
@@ -1054,6 +1054,24 @@ export const AdminScalarFieldEnum = {
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
 
 
+export const RestaurantSettingsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  contactNumber: 'contactNumber',
+  address: 'address',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  isOpen: 'isOpen',
+  deliveryRadiusKm: 'deliveryRadiusKm',
+  authorizeNetApiLoginId: 'authorizeNetApiLoginId',
+  authorizeNetTransactionKey: 'authorizeNetTransactionKey',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RestaurantSettingsScalarFieldEnum = (typeof RestaurantSettingsScalarFieldEnum)[keyof typeof RestaurantSettingsScalarFieldEnum]
+
+
 export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1130,24 +1148,6 @@ export const ReservationScalarFieldEnum = {
 } as const
 
 export type ReservationScalarFieldEnum = (typeof ReservationScalarFieldEnum)[keyof typeof ReservationScalarFieldEnum]
-
-
-export const RestaurantSettingsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  contactNumber: 'contactNumber',
-  address: 'address',
-  latitude: 'latitude',
-  longitude: 'longitude',
-  isOpen: 'isOpen',
-  deliveryRadiusKm: 'deliveryRadiusKm',
-  authorizeNetApiLoginId: 'authorizeNetApiLoginId',
-  authorizeNetTransactionKey: 'authorizeNetTransactionKey',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type RestaurantSettingsScalarFieldEnum = (typeof RestaurantSettingsScalarFieldEnum)[keyof typeof RestaurantSettingsScalarFieldEnum]
 
 
 export const TransactionScalarFieldEnum = {
@@ -1254,6 +1254,27 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Decimal'
  */
 export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
@@ -1264,13 +1285,6 @@ export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Decimal[]'
  */
 export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1355,20 +1369,6 @@ export type EnumReservationStatusFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'ReservationStatus[]'
  */
 export type ListEnumReservationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReservationStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -1510,12 +1510,12 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   admin?: Prisma.AdminOmit
+  restaurantSettings?: Prisma.RestaurantSettingsOmit
   category?: Prisma.CategoryOmit
   menuItem?: Prisma.MenuItemOmit
   order?: Prisma.OrderOmit
   orderItem?: Prisma.OrderItemOmit
   reservation?: Prisma.ReservationOmit
-  restaurantSettings?: Prisma.RestaurantSettingsOmit
   transaction?: Prisma.TransactionOmit
 }
 

@@ -347,7 +347,7 @@ export type ReservationCreateInput = {
   status?: $Enums.ReservationStatus
   notes?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type ReservationUncheckedCreateInput = {
@@ -361,7 +361,7 @@ export type ReservationUncheckedCreateInput = {
   status?: $Enums.ReservationStatus
   notes?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type ReservationUpdateInput = {
@@ -402,7 +402,7 @@ export type ReservationCreateManyInput = {
   status?: $Enums.ReservationStatus
   notes?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type ReservationUpdateManyMutationInput = {
