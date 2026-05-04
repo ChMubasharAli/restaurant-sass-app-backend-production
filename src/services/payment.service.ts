@@ -4,11 +4,27 @@ import { authorizeNetConfig } from "../config/authorize-net.config.js";
 
 const { APIContracts, APIControllers } = AuthorizeNet;
 
+// Authorize.Net API field limits
+const MAX_ADDRESS_LENGTH = 60;
+const MAX_CITY_LENGTH = 40;
+const MAX_STATE_LENGTH = 40;
+const MAX_ZIP_LENGTH = 20;
+const MAX_FIRST_NAME_LENGTH = 50;
+const MAX_LAST_NAME_LENGTH = 50;
+
 export class PaymentService {
   private transactionService: TransactionService;
 
   constructor() {
     this.transactionService = new TransactionService();
+  }
+
+  /**
+   * Truncate string to max length for Authorize.Net API compliance
+   */
+  private truncate(value: string, maxLength: number): string {
+    if (!value) return "";
+    return value.substring(0, maxLength).trim();
   }
 
   /**
@@ -69,16 +85,31 @@ export class PaymentService {
         transactionRequest.setCustomer(customerData);
       }
 
-      // Billing Address
+      // Billing Address (with truncation for Authorize.Net API limits)
       if (params.address || params.city || params.state || params.zip) {
         const billTo = new APIContracts.CustomerAddressType();
         const names = params.customerName.split(" ");
-        billTo.setFirstName(names[0] || "");
-        billTo.setLastName(names.slice(1).join(" ") || "");
-        if (params.address) billTo.setAddress(params.address);
-        if (params.city) billTo.setCity(params.city);
-        if (params.state) billTo.setState(params.state);
-        if (params.zip) billTo.setZip(params.zip);
+        const firstName = this.truncate(names[0] || "", MAX_FIRST_NAME_LENGTH);
+        const lastName = this.truncate(
+          names.slice(1).join(" ") || "",
+          MAX_LAST_NAME_LENGTH,
+        );
+
+        billTo.setFirstName(firstName);
+        billTo.setLastName(lastName);
+
+        if (params.address) {
+          billTo.setAddress(this.truncate(params.address, MAX_ADDRESS_LENGTH));
+        }
+        if (params.city) {
+          billTo.setCity(this.truncate(params.city, MAX_CITY_LENGTH));
+        }
+        if (params.state) {
+          billTo.setState(this.truncate(params.state, MAX_STATE_LENGTH));
+        }
+        if (params.zip) {
+          billTo.setZip(this.truncate(params.zip, MAX_ZIP_LENGTH));
+        }
         transactionRequest.setBillTo(billTo);
       }
 
@@ -159,7 +190,6 @@ export class PaymentService {
 
   /**
    * Process payment with Accept.js opaque data (PCI-compliant)
-   * This method was missing and causing the error
    */
   async processPaymentWithOpaqueData(params: {
     amount: number;

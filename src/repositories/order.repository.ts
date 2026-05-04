@@ -42,14 +42,13 @@ export class OrderRepository extends BaseRepository {
           pickupType: (data.pickupType as any) ?? null,
           paymentMethod: data.paymentMethod as any,
           totalAmount,
-          updatedAt: new Date(), // ✅ ADD THIS
+
           orderItems: {
             create: data.items.map((item) => ({
               menuItemId: item.menuItemId,
               quantity: item.quantity,
               unitPrice: 0,
               totalPrice: 0,
-              updatedAt: new Date(), // ✅ ADD THIS for OrderItem
             })),
           },
         },
