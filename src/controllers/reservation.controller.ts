@@ -15,7 +15,9 @@ export class ReservationController {
   }
 
   createReservation = async (req: Request, res: Response) => {
-    const validationResult = createReservationSchema.safeParse(req.body);
+    const validationResult = await createReservationSchema.safeParseAsync(
+      req.body,
+    );
 
     if (!validationResult.success) {
       throw new ValidationError(
